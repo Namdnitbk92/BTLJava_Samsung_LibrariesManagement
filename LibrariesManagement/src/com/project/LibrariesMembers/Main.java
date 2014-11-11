@@ -1,4 +1,4 @@
-package com.project.LibrariesBook;
+package com.project.LibrariesMembers;
 
 public class Main {
 

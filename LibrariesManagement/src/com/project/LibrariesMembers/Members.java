@@ -1,4 +1,4 @@
-package com.project.LibrariesBook;
+package com.project.LibrariesMembers;
 import java.sql.*;
 
 public class Members {
