@@ -1,5 +1,8 @@
 package com.project.ui;
 
+import java.awt.*;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 import com.project.members.AddMembers;
@@ -21,11 +24,11 @@ public class JLibrary extends JFrame {
 	//Tao JToolBar
 	private JToolBar searchToolBar = new JToolBar();
 	//Tao Label
-	private JLabel searchLabel1 = new JLabel("Tiêu đề sách: ");
+	private JLabel searchLabel = new JLabel("Tiêu đề sách: ");
 	//Tao JTextField de su dung cho searchToolBar
 	private JTextField searchTextField = new JTextField();
 	//Tao JButton de su dung cho searchToolBar
-	private JButton searchButton = new JButton("Tìm kiếm");
+	private JButton goButton = new JButton("Tìm kiếm");
 	
 	private JDesktopPane desktop = new JDesktopPane();
     private JSplitPane splitPane;
@@ -50,6 +53,8 @@ public class JLibrary extends JFrame {
     
     //Phuong thuc khoi tao JLibrary
     public JLibrary() {
-    	
+    	//Tieu de cho khung chuong trinh
+        super("Hệ thống quản lý thư viện");
+        
     }
 }
