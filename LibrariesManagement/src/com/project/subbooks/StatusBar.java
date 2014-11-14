@@ -14,7 +14,7 @@ public class StatusBar extends JPanel
 	
 private JLabel statusBar = new JLabel(" ");
 
-// Xây dựng thanh Stusbar
+// Xây dựng thanh StatusBar
 public StatusBar()
 {
 	statusBar.setFont(new Font("Tahoma", Font.BOLD, 9));
