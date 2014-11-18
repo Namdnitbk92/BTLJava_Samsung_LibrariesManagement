@@ -50,7 +50,7 @@ public class Borrow {
 		}
 		/***************************************************************
 		 * Tạo kết nối báo cáo update bảng biểu trong cơ sở sữ liệu
-		 * Sau đó đóng các kết nối,báo cáo .Đó cũng là cách bắt lỗi SQL Exeption
+		 * Sau đó đóng các kết nối,báo cáo .Đó cũng là cách bắt lỗi SQL Exeption 
 		 ***************************************************************/
 }
 }
