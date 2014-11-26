@@ -75,10 +75,78 @@ public class PrintingMembers extends JInternalFrame implements Printable {
 	}
 	
 	public int print(Graphics pg, PageFormat pageFormat, int pageIndex) throws PrinterException {
-		return pageIndex;
+		pg.translate((int) pageFormat.getImageableX(), (int) pageFormat.getImageableY());
+		int wPage = (int) pageFormat.getImageableWidth();
+		int hPage = (int) pageFormat.getImageableHeight();
+		pg.setClip(0, 0, wPage, hPage);
+
+		pg.setColor(textArea.getBackground());
+		pg.fillRect(0, 0, wPage, hPage);
+		pg.setColor(textArea.getForeground());
+
+		Font font = textArea.getFont();
+		pg.setFont(font);
+		FontMetrics fm = pg.getFontMetrics();
+		int hLine = fm.getHeight();
+
+		if (lines == null)
+			lines = getLines(fm, wPage);
+
+		int numLines = lines.size();
+		int linesPerPage = Math.max(hPage / hLine, 1);
+		int numPages = (int) Math.ceil((double) numLines / (double) linesPerPage);
+		if (pageIndex >= numPages) {
+			lines = null;
+			return NO_SUCH_PAGE;
+		}
+		int x = 0;
+		int y = fm.getAscent();
+		int lineIndex = linesPerPage * pageIndex;
+		while (lineIndex < lines.size() && y < hPage) {
+			String str = (String) lines.get(lineIndex);
+			pg.drawString(str, x, y);
+			y += hLine;
+			lineIndex++;
+		}
+		return PAGE_EXISTS;
 	}
 	
 	protected Vector getLines(FontMetrics fm, int wPage) {
-		return lines;
+		Vector v = new Vector();
+
+		String text = textArea.getText();
+		String prevToken = "";
+		StringTokenizer st = new StringTokenizer(text, "\n\r", true);
+		while (st.hasMoreTokens()) {
+			String line = st.nextToken();
+			if (line.equals("\r"))
+				continue;
+			if (line.equals("\n") && prevToken.equals("\n"))
+				v.add("");
+			prevToken = line;
+			if (line.equals("\n"))
+				continue;
+
+			StringTokenizer st2 = new StringTokenizer(line, " \t", true);
+			String line2 = "";
+			while (st2.hasMoreTokens()) {
+				String token = st2.nextToken();
+				if (token.equals("\t")) {
+					int numSpaces = TAB_SIZE - line2.length() % TAB_SIZE;
+					token = "";
+					for (int k = 0; k < numSpaces; k++)
+						token += " ";
+				}
+				int lineLength = fm.stringWidth(line2 + token);
+				if (lineLength > wPage && line2.length() > 0) {
+					v.add(line2);
+					line2 = token.trim();
+					continue;
+				}
+				line2 += token;
+			}
+			v.add(line2);
+		}
+		return v;
 	}
 }
