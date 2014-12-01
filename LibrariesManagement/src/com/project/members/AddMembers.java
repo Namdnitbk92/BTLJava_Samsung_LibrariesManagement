@@ -3,6 +3,7 @@ package com.project.members;
 /*@athor Tran Van Thuan*/
 import java.awt.*;
 import java.util.Date;
+
 import javax.swing.*;
 
 public class AddMembers extends JInternalFrame 
@@ -79,5 +80,76 @@ public class AddMembers extends JInternalFrame
 	     }  
 		 return true ;
 	}
+	
+	//thiết lập mảng JTextField & JPasswordField = null
+	public void clearTextField() {
+		for (int i = 0; i < informationLabel.length ;i++)
+		{
+			if (i == 0)
+				informationTextField[i].setText(null);
+			if (i == 1 || i == 2)
+				informationPasswordField[i-1].setText(null) ;
+			if (i == 3 || i == 4 || i == 5 || i == 6)
+				informationTextField[i-2].setText(null);
+		}
+	}
+	//constructor cho addMembers
+	public AddMembers () {
+		//thiet lap tieu de cho internal frame
+		super ("Thêm Members", false, true,false, true );
+		//thiết lập icon
+		setFrameIcon(new ImageIcon(ClassLoader.getSystemResource("images/Add16.gif")));
+		//thành phần giao diện đồ họa người dùng
+		Container cp = getContentPane() ;
+		
+		//thiết lập layout
+		northPanel.setLayout (new FlowLayout (FlowLayout.CENTER)) ;
+		//thiết lập font
+		northLabel.setFont(new Font ("Tahoma",Font.BOLD, 14) );
+		//thêm label cho panel
+		northPanel.add(northLabel);
+		//thêm panel cho container
+		cp.add("North",northPanel);
+		
+		//thiết lập layout
+		centerPanel.setLayout(new BorderLayout());
+		//thiết lập border cho panel
+		centerPanel.setBorder(BorderFactory.createTitledBorder("Thêm 1 Member mới"));
+		//thiết lập layout
+		informationLabelPanel.setLayout(new GridLayout(7, 1, 1, 1));
+		//thiết lập layout
+		informationTextFieldPanel.setLayout(new GridLayout(7,1,1,1));
+		
+		//thêm strings cho label, thiết lập font 
+		//và thêm những label này cho panel
+		//cuối cùng thêm panel cho container
+		
+		for(int i = 0; i< informationLabel.length; i++)
+		{
+			informationLabelPanel.add(informationLabel[i]= new JLabel(informationString[i]));
+			informationLabel[i].setFont(new Font ("Tahoma",Font.BOLD,11));			
+		}
+		//thêm panel cho centerPanel
+		centerPanel.add("West", informationLabelPanel) ;	
+		
+		//thêm JTextField và JPasswordField cho panel và 
+		//thiết lập font cho JTextField và JPasswordField
+		//cuối cùng thêm panel cho centerPanel
+		
+		for( int i = 0; i< informationLabel.length; i++)
+		{
+			if(i== 1||i ==2)
+			{
+				informationTextFieldPanel.add(informationPasswordField[i-1] = new JPasswordField(25)) ;
+				informationPasswordField[i-1].setFont(new Font("Tohama",Font.PLAIN,11));				
+			}
+			if (i == 0)
+			{
+				informationTextFieldPanel.add(informationTextField[i] = new JTextField(25));
+				
+			}
+		}
+	}
+	
 
 }
