@@ -2,4 +2,5 @@ eclipse.preferences.version=1
 encoding//src/com/project/books/Borrow.java=UTF-8
 encoding//src/com/project/books/ListBooks.java=UTF-8
 encoding//src/com/project/books/PrintingBooks.java=UTF-8
+encoding//src/com/project/books/ResultSetTableModel.java=UTF-8
 encoding//src/com/project/ui/JLibrary.java=UTF-8

@@ -41,21 +41,20 @@ public class ListBooks extends JInternalFrame {
 	private static final String DATABASE_URL = "jdbc:odbc:JLibrary";
 	private static final String DEFAULT_QUERY = "SELECT BookID, Subject, Title, Author," +
 	        "Publisher, Copyright, Edition, Pages, NumberOfBooks, ISBN, Library, Availble,ShelfNo FROM Books";
-	//constructor of listBooks
+	//cấu trúc  listBooks
 		public ListBooks() {
-			//for setting the title for the internal frame
+			// thiết lập tiêu đề khung trong
 			super("Books", false, true, false, true);
-			//for setting the icon
+			//thiết lập icon
 			setFrameIcon(new ImageIcon(ClassLoader.getSystemResource("images/List16.gif")));
-			//setLocale(new java.util.Locale("ar", "SA", ""));
-
-			//for getting the graphical user interface components display area
+			
+			// lấy giao diện đồ họa của người dùng 
 			Container cp = getContentPane();
 
-			//for bassing the required information to the ResultSetTableModel object
+			// yêu cầu thông tin cho đối thể ResultSetTableModel 
 			try {
 				tableModel = new ResultSetTableModel(JDBC_DRIVER, DATABASE_URL, DEFAULT_QUERY);
-				//for setting the Query
+				//thiết lập  Query
 				try {
 					tableModel.setQuery(DEFAULT_QUERY);
 				}
@@ -68,16 +67,16 @@ public class ListBooks extends JInternalFrame {
 			catch (SQLException sqlException) {
 				System.out.println(sqlException.toString());
 			}
-			//for setting the table with the information
+			//thiết lập thông tin bảng biểu
 			table = new JTable(tableModel);
-			//for setting the size for the table
+			//định dạng kích thước bảng biểu
 			table.setPreferredScrollableViewportSize(new Dimension(990, 200));
-			//for setting the font
+			//định dạng phông  chữ
 			table.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			//for setting the scrollpane to the table
+			//thiết lập scrollpane cho bảng biểu
 			scrollPane = new JScrollPane(table);
 
-			//for setting the size for the table columns
+			//định dạng  kích thước các cột bảng
 			for (int i = 0; i < 13; i++) {
 				column = table.getColumnModel().getColumn(i);
 				if (i == 0) //BookID
@@ -86,7 +85,7 @@ public class ListBooks extends JInternalFrame {
 					column.setPreferredWidth(100);
 				if (i == 2) //Title
 					column.setPreferredWidth(150);
-				if (i == 3) //Auther
+				if (i == 3) //Author
 					column.setPreferredWidth(50);
 				if (i == 4) //Publisher
 					column.setPreferredWidth(70);
@@ -102,40 +101,40 @@ public class ListBooks extends JInternalFrame {
 					column.setPreferredWidth(70);
 				if (i == 10) //Library
 					column.setPreferredWidth(30);
-				if (i == 11) //Availble
+				if (i == 11) //Available
 					column.setPreferredWidth(30);
 	                        if (i == 12) //ShelfNo
 					column.setPreferredWidth(30);
 			}
-			//for setting the font to the label
+			//định dạng phông chữ cho nhãn
 			northLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-			//for setting the layout to the panel
+			//định dạng layout cho panel
 			northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-			//for adding the label to the panel
+			//thêm nhãn cho panel
 			northPanel.add(northLabel);
-			//for adding the panel to the container
+			//thêm panel vào container
 			cp.add("North", northPanel);
 
-			//for setting the layout to the panel
+			//thiết lập layout cho panel
 			centerPanel.setLayout(new BorderLayout());
-			//for creating an image for the button
+			//tạo ảnh cho nút bấm
 			ImageIcon printIcon = new ImageIcon(ClassLoader.getSystemResource("images/Print16.gif"));
-			//for adding the button to the panel
+			// thêm nút bấm vào panel
 			printButton = new JButton("print the books", printIcon);
-			//for setting the tip text
+			//thiết lập tip text
 			printButton.setToolTipText("Print");
-			//for setting the font to the button
+			//định dạng phông chữ cho nút bấm
 			printButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			//for adding the button to the panel
+			//thêm nút bấm vào panel
 			centerPanel.add(printButton, BorderLayout.NORTH);
-			//for adding the scrollpane to the panel
+			//thêm scrollpane vào panel
 			centerPanel.add(scrollPane, BorderLayout.CENTER);
-			//for setting the border to the panel
+			//thiết lập viền bao cho panel
 			centerPanel.setBorder(BorderFactory.createTitledBorder("Books:"));
-			//for adding the panel to the container
+			//thêm panel vào container
 			cp.add("Center", centerPanel);
 
-			//for adding the actionListener to the button
+			//thêm actionListener vào button
 			printButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent ae) {
 					Thread runner = new Thread() {
@@ -157,9 +156,9 @@ public class ListBooks extends JInternalFrame {
 					runner.start();
 				}
 			});
-			//for setting the visible to true
+			//thiết lập giá trị 'true' cho  visible 
 			setVisible(true);
-			//to show the frame
+			// đưa ra khung
 			pack();
 		}
 }

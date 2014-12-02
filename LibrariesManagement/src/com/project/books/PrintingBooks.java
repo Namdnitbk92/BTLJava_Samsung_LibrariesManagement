@@ -67,9 +67,9 @@ public class PrintingBooks extends JInternalFrame implements Printable{
 			catch (SQLException SQLe) {
 				System.out.println(SQLe.toString());
 			}
-			//for setting the visible to true
+			//thiết lập giá trị 'true' cho  visible 
 			setVisible(true);
-			//to show the frame
+			// đưa ra khung
 			pack();
 		}
 	@Override
@@ -122,7 +122,8 @@ public class PrintingBooks extends JInternalFrame implements Printable{
 			String line = st.nextToken();
 			if (line.equals("\r"))
 				continue;
-			// StringTokenizer will ignore empty lines, so it's a bit tricky to get them...
+			/* StringTokenizer sẽ bỏ qua các dòng trắng , 
+			vì vậy đó là một chút khó khăn để có được chúng ...*/
 			if (line.equals("\n") && prevToken.equals("\n"))
 				v.add("");
 			prevToken = line;
