@@ -1,8 +1,6 @@
 package com.project.members;
 
 /*@athor Tran Van Thuan*/
-import ResultSetTableModel;
-
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import java.awt.*;
@@ -18,7 +16,7 @@ public class ListMembers extends JInternalFrame{
 	//tao Center Panel
 	private JPanel centerPanel = new JPanel();
 	//tao label
-	private JLabel label = new JLabel("Danh sach Sinh Vien");
+	private JLabel label = new JLabel("Danh sách Sinh Viên");
 	//tao button
 	private JButton printButton ;
 	//tao table
@@ -40,7 +38,7 @@ public class ListMembers extends JInternalFrame{
 	"Major,Expired FROM Members";
 	
 	//constructor cua ListMembers
-	public void LisMembers() {
+	public ListMembers() {
 		//thiet lap title cho internal frame
 		super("Members", false,true,false,true);
 		//thiet lap icon
@@ -124,9 +122,41 @@ public class ListMembers extends JInternalFrame{
 		cp.add("Center", centerPanel);
 		
 		//thêm actionListener cho button
+		printButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				// TODO Auto-generated method stub
+				Thread runner = new Thread ()
+				{
+					public void run()
+					{
+						try 
+						{
+							PrinterJob prnJob = PrinterJob.getPrinterJob() ;
+							prnJob.setPrintable(new PrintingMembers(DEFAULT_QUERY));
+							if(!prnJob.printDialog())
+							
+								return ;
+								setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+								prnJob.print();
+								setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));								
+						 }
+							catch(PrinterException ex)
+							{
+								System.out.println("Printing error :"+ex.toString());
+							}
+					}													
+				
+			} ;
+			runner.start();
+			}
+		});
 		
-		
-		
+		//thiết lập visible cho true
+		setVisible(true);
+		//show frame
+		pack();
 	}
 
 
