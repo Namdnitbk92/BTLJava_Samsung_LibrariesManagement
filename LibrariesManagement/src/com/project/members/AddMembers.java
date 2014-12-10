@@ -2,6 +2,8 @@ package com.project.members;
 
 /*@athor Tran Van Thuan*/
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Date;
 
 import javax.swing.*;
@@ -30,11 +32,13 @@ public class AddMembers extends JInternalFrame
 	private JPasswordField[] informationPasswordField = new JPasswordField[2] ;
 	//tạo 1 Internal Panel trong Center Panel
 	private JPanel insertInformationButtonPanel = new JPanel();
+	//tạo 1 button
+	private JButton insertInformationButton = new JButton("Chèn thông tin");
 	
 	//tạo South Panel
 	private JPanel southPanel = new JPanel() ;
 	//tạo 1 button
-	private JButton oKButton = new JButton("Exit");
+	private JButton OKButton = new JButton("Exit");
 	//tạo ra các đối tượng từ các lớp khác để sử dụng chúng trong các ActionListener
 	private Members member ;
 	//tạo 1 mang string de luu tru du lieu
@@ -148,7 +152,94 @@ public class AddMembers extends JInternalFrame
 				informationTextFieldPanel.add(informationTextField[i] = new JTextField(25));
 				
 			}
+			if (i == 3|| i == 4|| i ==5 || i ==6)
+			{
+				informationTextFieldPanel.add(informationTextField [i-2] = new JTextField(25));
+				informationTextField[i].setFont(new Font("Tahoma",Font.PLAIN,11));				
+			}
 		}
+		centerPanel.add ("East",informationTextFieldPanel);
+		
+		//thiết lập layout cho panel, thiết lập font cho button
+		//thêm button vào panel
+		//thêm panel vào container
+		
+		insertInformationButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		insertInformationButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		insertInformationButtonPanel.add(insertInformationButton);
+		centerPanel.add("South",insertInformationButtonPanel);
+		cp.add("Center",centerPanel);
+		
+		//thiết lập layout cho panel, font cho button
+		//thêm button vào panel & thiết lập border
+		//thêm panel vào container
+		
+		southPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		OKButton.setFont(new Font("Tahoma",Font.BOLD,11));
+		southPanel.add(OKButton);
+		southPanel.setBorder(BorderFactory.createEtchedBorder());
+		cp.add("South",southPanel);
+		
+		//thêm action listener vào button, đầu tiên text sẽ được lấy từ
+		//JTextField[] và tạo kết nối với database
+		//sau đó, update table database với giá trị mới(new value)
+		
+		insertInformationButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				// check xem coi có thông tin nào thiếu
+				if(isCorrect())
+			    {
+					if(isPasswordCorrect())
+					{
+					   Thread runner = new Thread()
+					   {
+						   public void run()
+						   {
+							   member = new Members();
+							   Date d = new Date();
+							   //kiểm tra xem có thông tin nào không giống trong database
+							   member.connection("SELECT * FROM Members WHERE ID = " +data[0]);
+							   int ID = member.getID();
+							   if (Integer.parseInt(data[0]) != ID)							 
+							   {
+								   member.update("INSERT INTO Members(ID,Password,Name,Email,Major,Expired) VALUE ("+
+							              data[0] + ",'" +data[1] +",'"+data[2] +",'" +data[3] +",'" +
+										   data[4] +",'" +data[5] +"')" );
+								   //thiết lập mảng JTextField & JPasswordField = null
+								   clearTextField();								
+							   }
+							   else
+								   JOptionPane.showMessageDialog(null,"Sinh viên trong Library","Error",JOptionPane.ERROR_MESSAGE);							   
+						   }
+						   
+					   };
+					   runner.start();
+					}
+					//nếu password sai					
+					else 
+						JOptionPane.showMessageDialog(null, "the password is wrong","Error",JOptionPane.ERROR_MESSAGE);
+				}
+				
+				//nếu dữ liệu thiếu , hiển thị Message Dialog
+				else
+					JOptionPane.showMessageDialog(null, "Hãy hoàn thành thông tin","Warning",JOptionPane.WARNING_MESSAGE);				
+				
+			}
+		});
+		//thêm action listener vào button để dispose the frame
+		OKButton.addActionListener (new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				dispose();				
+			}
+		});
+		//thiết lập visible
+		setVisible(true);
+		//trình diễn internal frame
+		pack();
 	}
 	
 
