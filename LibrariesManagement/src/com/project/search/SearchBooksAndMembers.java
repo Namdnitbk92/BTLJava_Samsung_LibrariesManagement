@@ -117,6 +117,126 @@ public class SearchBooksAndMembers extends JInternalFrame {
 
 	// Phuong thuc khoi tao lop searchBooksAndMembers
 	public SearchBooksAndMembers() {
+		// Cai dat tieu de cho internal frame
+		super("Tìm kiếm", false, true, false, true);
+		// Cai dat icon
+		setFrameIcon(new ImageIcon(
+				ClassLoader.getSystemResource("images/Find16.gif")));
 
+		Container cp = getContentPane();
+
+		// Cai dat layout
+		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		// Cai dat font
+		title.setFont(new Font("Tahoma", Font.BOLD, 14));
+		// Them label
+		northPanel.add(title);
+		// Them north panel vao container
+		cp.add("North", northPanel);
+
+		// Cai dat layout
+		center.setLayout(new BorderLayout());
+		centerBooksPanel.setLayout(new BorderLayout());
+		searchBooksPanel.setLayout(new GridLayout(2, 2, 1, 1));
+		// Them label
+		searchBooksPanel.add(searchBooksLabel);
+		// Them JComboBos[]
+		searchBooksPanel.add(searchBooksTypes = new JComboBox(booksTypes));
+		// Them label
+		searchBooksPanel.add(booksKey);
+		// Them text field
+		searchBooksPanel.add(booksKeyTextField);
+		// Them internal panel vao panel
+		centerBooksPanel.add("North", searchBooksPanel);
+
+		// Cai dat layout
+		searchBooksButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		// Them button
+		searchBooksButtonPanel.add(searchBooksButton);
+		// Them internal panel vao center panel
+		centerBooksPanel.add("South", searchBooksButtonPanel);
+		// Cai dat border
+		centerBooksPanel.setBorder(BorderFactory
+				.createTitledBorder("Tìm kiếm sách:"));
+		center.add("West", centerBooksPanel);
+
+		// Cai dat layout
+		centerMembersPanel.setLayout(new BorderLayout());
+		searchMembersPanel.setLayout(new GridLayout(2, 2, 1, 1));
+		// Them label
+		searchMembersPanel.add(searchMembersLabel);
+		// Them JComboBos[]
+		searchMembersPanel
+				.add(searchMembersTypes = new JComboBox(membersTypes));
+		// Them label
+		searchMembersPanel.add(membersKey);
+		// Them text field
+		searchMembersPanel.add(membersKeyTextField);
+		// Them internal panel vao panel
+		centerMembersPanel.add("North", searchMembersPanel);
+
+		// Cai dat layout
+		searchMembersButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		// Them button
+		searchMembersButtonPanel.add(searchMembersButton);
+		// Them internal panel vao center panel
+		centerMembersPanel.add("South", searchMembersButtonPanel);
+		// Cai dat border
+		centerMembersPanel.setBorder(BorderFactory
+				.createTitledBorder("Tìm kiếm thành viên:"));
+		// Them center panel vao center
+		center.add("East", centerMembersPanel);
+
+		// Them center vao container
+		cp.add("Center", center);
+
+		/**
+		 * Cai dat font cho lables & buttons
+		 */
+		searchBooksLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+		searchBooksTypes.setFont(new Font("Tahoma", Font.BOLD, 11));
+		booksKey.setFont(new Font("Tahoma", Font.BOLD, 11));
+		booksKeyTextField.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		searchBooksButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cancelButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		searchMembersLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+		searchMembersTypes.setFont(new Font("Tahoma", Font.BOLD, 11));
+		membersKey.setFont(new Font("Tahoma", Font.BOLD, 11));
+		membersKeyTextField.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		searchMembersButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cancelButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		// Cai dat layout
+		southPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		// Them button
+		southPanel.add(cancelButton);
+		// Cai dat border
+		southPanel.setBorder(BorderFactory.createEtchedBorder());
+		// Them south panel vao container
+		cp.add("South", southPanel);
+
+		/***********************************************************************
+		 * Them action listener cho button *
+		 ***********************************************************************/
+		searchBooksButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+
+			}
+		});
+
+		searchMembersButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+
+			}
+		});
+		// Them action listener cho nut cancelButton
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				dispose();
+			}
+		});
+		setVisible(true);
+		// Hien thi internal frame
+		pack();
 	}
 }

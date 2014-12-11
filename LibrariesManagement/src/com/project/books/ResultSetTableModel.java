@@ -27,22 +27,81 @@ public class ResultSetTableModel extends AbstractTableModel {
 		setQuery(query); // Thiet lap truy van va thuc hien
 	}
 
+	// Lay lop dai dien cho loai cot
+	public Class getColumnClass(int column) throws IllegalStateException {
+		// Kiem tra ket noi CSDL
+		if (!connectedToDatabase)
+			throw new IllegalStateException("Not Connected to Database");
+		// Xac dinh lop Java cua cot
+		try {
+			String className = metaData.getColumnClassName(column + 1);
+			return Class.forName(className); 
+		}
+		// Bat SQLExceptions and ClassNotFoundExceptions
+		catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		
+		return Object.class;
+	}
+
 	// Lay so luong cot trong ResultSet
-	public int getColumnCount() {
-		// TODO Auto-generated method stub
+	public int getColumnCount() throws IllegalStateException {
+		// Kiem tra ket noi CSDL
+		if (!connectedToDatabase)
+			throw new IllegalStateException("Not Connected to Database");
+		// Xac dinh so cot
+		try {
+			return metaData.getColumnCount();
+		}
+		// Bat SQLExceptions va in thong bao loi
+		catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
+		
 		return 0;
+	}
+
+	// Lay ten cot trong ResultSet
+	public String getColumnName(int column) throws IllegalStateException {
+		// Kiem tra ket noi CSDL
+		if (!connectedToDatabase)
+			throw new IllegalStateException("Not Connected to Database");
+		// Xac dinh ten cot
+		try {
+			return metaData.getColumnName(column + 1);
+		}
+		// Bat SQLExceptions va in thong bao loi
+		catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
+		
+		return "";
 	}
 
 	// Tra ve so luong hang trong ResultSet
-	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getRowCount() throws IllegalStateException {
+		// Kiem tra ket noi CSDL
+		if (!connectedToDatabase)
+			throw new IllegalStateException("Not Connected to Database");
+		return numberOfRows;
 	}
 
 	// Co gia tri trong hang va cot cu the
-	public Object getValueAt(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object getValueAt(int row, int column) throws IllegalStateException {
+		// Kiem tra ket noi CSDL
+		if (!connectedToDatabase)
+			throw new IllegalStateException("Not Connected to Database");
+		try {
+			resultSet.absolute(row + 1);
+			return resultSet.getObject(column + 1);
+		}
+		// Bat SQLExceptions va in thong bao loi
+		catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
+		
+		return "";
 	}
 
 	// Thiet lap moi chuoi truy van CSDL
