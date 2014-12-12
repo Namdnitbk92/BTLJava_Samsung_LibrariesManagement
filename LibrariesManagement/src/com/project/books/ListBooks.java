@@ -11,10 +11,12 @@ import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.sql.SQLException;
 
-/* 
- * 
- */
-public class ListBooks extends JInternalFrame {
+/**
+ *@author Bach
+ **/
+
+public class ListBooks extends JInternalFrame
+{
 /*
  *  khởi tạo biến sử dung trong chương trình
  */
@@ -42,7 +44,8 @@ public class ListBooks extends JInternalFrame {
 	private static final String DEFAULT_QUERY = "SELECT BookID, Subject, Title, Author," +
 	        "Publisher, Copyright, Edition, Pages, NumberOfBooks, ISBN, Library, Availble,ShelfNo FROM Books";
 	//cấu trúc  listBooks
-		public ListBooks() {
+		public ListBooks() 
+		{
 			// thiết lập tiêu đề khung trong
 			super("Books", false, true, false, true);
 			//thiết lập icon
@@ -52,19 +55,23 @@ public class ListBooks extends JInternalFrame {
 			Container cp = getContentPane();
 
 			// yêu cầu thông tin cho đối thể ResultSetTableModel 
-			try {
+			try 
+			{
 				tableModel = new ResultSetTableModel(JDBC_DRIVER, DATABASE_URL, DEFAULT_QUERY);
 				//thiết lập  Query
-				try {
+				try 
+				{
 					tableModel.setQuery(DEFAULT_QUERY);
 				}
 				catch (SQLException sqlException) {
 				}
 			}
-			catch (ClassNotFoundException classNotFound) {
+			catch (ClassNotFoundException classNotFound) 
+			{
 				System.out.println(classNotFound.toString());
 			}
-			catch (SQLException sqlException) {
+			catch (SQLException sqlException) 
+			{
 				System.out.println(sqlException.toString());
 			}
 			//thiết lập thông tin bảng biểu
@@ -77,7 +84,8 @@ public class ListBooks extends JInternalFrame {
 			scrollPane = new JScrollPane(table);
 
 			//định dạng  kích thước các cột bảng
-			for (int i = 0; i < 13; i++) {
+			for (int i = 0; i < 13; i++) 
+			{
 				column = table.getColumnModel().getColumn(i);
 				if (i == 0) //BookID
 					column.setPreferredWidth(20);
@@ -134,12 +142,17 @@ public class ListBooks extends JInternalFrame {
 			//thêm panel vào container
 			cp.add("Center", centerPanel);
 
-			//thêm actionListener vào button
-			printButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent ae) {
-					Thread runner = new Thread() {
-						public void run() {
-							try {
+			//thêm actionListener vào nút bấm
+			printButton.addActionListener(new ActionListener() 
+			{
+				public void actionPerformed(ActionEvent ae) 
+				{
+					Thread runner = new Thread() 
+					{
+						public void run() 
+						{
+							try 
+							{
 								PrinterJob prnJob = PrinterJob.getPrinterJob();
 								prnJob.setPrintable(new PrintingBooks(DEFAULT_QUERY));
 								if (!prnJob.printDialog())
@@ -148,7 +161,8 @@ public class ListBooks extends JInternalFrame {
 								prnJob.print();
 								setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 							}
-							catch (PrinterException ex) {
+							catch (PrinterException ex) 
+							{
 								System.out.println("Printing error: " + ex.toString());
 							}
 						}

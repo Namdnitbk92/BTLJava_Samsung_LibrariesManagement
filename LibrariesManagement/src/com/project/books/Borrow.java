@@ -1,8 +1,11 @@
 package com.project.books; 
 
 import java.sql.*;
-
-public class Borrow {
+/**
+ *@author Bach
+ **/
+public class Borrow 
+{
 	/***************************************************************************
 	              Khởi tạo các biến sử dụng trong chương trình       
 	 ***************************************************************************/
@@ -20,37 +23,46 @@ public class Borrow {
 	public Borrow() {
 	}
 
-	public int getBookID() {
+	public int getBookID() 
+	{
 		return bookID;
 	}
 
-	public int getMemberID() {
+	public int getMemberID() 
+	{
 		return memberID;
 	}
 
-	public Date getDayOfBorrowed() {
+	public Date getDayOfBorrowed() 
+	{
 		return dayOfBorrowed;
 	}
 
-	public Date getDayOfReturn() {
+	public Date getDayOfReturn() 
+	{
 		return dayOfReturn;
 	}
 
-	public void connection() {
-		try {
+	public void connection() 
+	{
+		try 
+		{
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 		}
-		catch (ClassNotFoundException cnfe) {
+		catch (ClassNotFoundException cnfe) 
+		{
 			System.out.println("Borrow.java\n" + cnfe.toString());
 		}
-		catch (Exception e) {
+		catch (Exception e) 
+		{
 			System.out.println("Borrow.java\n" + e.toString());
 		}
 		/***************************************************************
 		 * Tạo kết nối báo cáo update bảng biểu trong cơ sở sữ liệu
 		 * Sau đó đóng các kết nối,báo cáo .Đó cũng là cách bắt lỗi SQL Exeption 
 		 ***************************************************************/ 
-		try {
+		try 
+		{
 			connection = DriverManager.getConnection(URL);
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery("SELECT * FROM Borrow");
@@ -64,33 +76,40 @@ public class Borrow {
 			statement.close();
 			connection.close();
 		}
-		catch (SQLException SQLe) {
+		catch (SQLException SQLe) 
+		{
 			System.out.println("Borrow.java\n" + SQLe.toString());
 		}
-		public void update(String Query) {
-			try {
+	}
+		public void update(String Query) 
+		{
+			try 
+			{
 				Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 			}
-			catch (ClassNotFoundException cnfe) {
+			catch (ClassNotFoundException cnfe) 
+			{
 				System.out.println("Borrow.java\n" + cnfe.toString());
 			}
-			catch (Exception e) {
+			catch (Exception e) 
+			{
 				System.out.println("Borrow.java\n" + e.toString());
 			}
 			/***************************************************************
 			 * Tạo kết nối báo cáo update bảng biểu trong cơ sở sữ liệu
 			 * Sau đó đóng các kết nối,báo cáo .Đó cũng là cách bắt lỗi SQL Exeption 
 			 ***************************************************************/ 
-			try {
+			try 
+			{
 				connection = DriverManager.getConnection(URL);
 				statement = connection.createStatement();
 				statement.executeUpdate(Query);
 				statement.close();
 				connection.close();
 			}
-			catch (SQLException SQLe) {
+			catch (SQLException SQLe) 
+			{
 				System.out.println("Borrow.java\n" + SQLe.toString());
 			}
 		}	
-}
 }
