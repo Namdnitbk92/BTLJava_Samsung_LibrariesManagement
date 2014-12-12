@@ -94,6 +94,67 @@ public class ListSearchMembers extends JInternalFrame {
 				column.setPreferredWidth(40);
 		}
 		
+		//thiết lập font cho label
+		label.setFont(new Font("Tahoma",Font.BOLD,14));
+		//thiết lập layout cho panel
+		northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		//thêm label vào panel
+		northPanel.add(label);
+		//thêm panel vào container
+		cp.add("North", northPanel);
+		
+		//thiết lập layout cho panel
+		centerPanel.setLayout(new BorderLayout());		
+		//tạo ảnh cho button
+		ImageIcon printIcon = new ImageIcon(ClassLoader.getSystemResource("images/Print16.gif"));
+		//thêm button vào panel
+		printButton = new JButton("in Sinh viên",printIcon);
+		//thiết lập tip text
+		printButton.setToolTipText("In");
+		//thiết lập font cho button
+		printButton.setFont(new Font("Tahoma",Font.PLAIN,12));
+		//thêm button vào panel
+		centerPanel.add(printButton,BorderLayout.NORTH);
+		//thêm scrollpane vào panel
+		centerPanel.add(scrollPane,BorderLayout.CENTER);
+		//thiết lập border cho panel
+		centerPanel.setBorder(BorderFactory.createTitledBorder("Members:"));
+		//thêm panel vào container
+		cp.add("Center",centerPanel);
+		
+		
+		//thêm actionListener vào button
+		printButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent ae)
+			{
+				Thread runner = new Thread()
+				{
+					public void run()
+					{
+						try 
+						{
+							PrinterJob prnJob = PrinterJob.getPrinterJob();
+							prnJob.setPrintable(new PrintingMembers(DEFAULT_QUERY));
+							if(!prnJob.printDialog())
+								return ;
+							setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+							prnJob.print();
+							setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+						}
+						catch(PrinterException ex)
+						{
+							System.out.println("Printing error :"+ex.toString());
+						}
+					}
+				};
+				runner.start();			
+			}
+		});
+		//thiết lập visible = true
+		setVisible(true);
+		//show frame
+		pack();
 		
 		
 		
