@@ -67,6 +67,7 @@ public class Borrow {
 		catch (SQLException SQLe) {
 			System.out.println("Borrow.java\n" + SQLe.toString());
 		}
+	}
 		public void update(String Query) {
 			try {
 				Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
@@ -92,5 +93,5 @@ public class Borrow {
 				System.out.println("Borrow.java\n" + SQLe.toString());
 			}
 		}	
-}
+
 }

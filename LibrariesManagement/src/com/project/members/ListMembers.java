@@ -3,6 +3,9 @@ package com.project.members;
 /*@athor Tran Van Thuan*/
 import javax.swing.*;
 import javax.swing.table.TableColumn;
+
+import com.project.books.ResultSetTableModel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

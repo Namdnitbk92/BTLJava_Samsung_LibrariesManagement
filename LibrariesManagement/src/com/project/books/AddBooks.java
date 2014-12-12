@@ -1,4 +1,4 @@
-package com.project.LibrariesBook;
+package com.project.books;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -155,11 +155,7 @@ public class AddBooks extends JInternalFrame {
         centerPanel.add("South", insertInformationButtonPanel);
         cp.add("Center", centerPanel);
 
-        /***********************************************************************
-         * for setting the layout for the panel,setting the font for the button*
-         * adding the button to the panel & setting the border.				   *
-         * finally adding the panel to the container						   *
-         ***********************************************************************/
+        
         southPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         OKButton.setFont(new Font("Tahoma", Font.BOLD, 11));
         southPanel.add(OKButton);
