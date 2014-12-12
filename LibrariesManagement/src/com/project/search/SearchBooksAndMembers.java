@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+;
+
 public class SearchBooksAndMembers extends JInternalFrame {
 
 	/***************************************************************************
@@ -220,13 +222,64 @@ public class SearchBooksAndMembers extends JInternalFrame {
 		 ***********************************************************************/
 		searchBooksButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-
+				// for checking if there is a missing information
+				if (isBooksDataCorrect()) {
+					book = new Books();
+					String bookQuery = "SELECT BookID, Subject, Title, Author, Publisher,"
+							+ "Copyright, Edition, Pages, NumberOfBooks,ISBN,Library,Availble,ShelfNo FROM Books"
+							+ " WHERE "
+							+ booksData[0]
+							+ " LIKE "
+							+ booksData[1];
+					book.connection(bookQuery);
+					int bookID = book.getBookID();
+					if (bookID != 0) {
+						listBooks = new ListSearchBooks(bookQuery);
+						getParent().add(listBooks);
+						try {
+							listBooks.setSelected(true);
+						} catch (java.beans.PropertyVetoException e) {
+						}
+						dispose();
+					} else {
+						JOptionPane.showMessageDialog(null, "No Match(es)",
+								"Error", JOptionPane.ERROR_MESSAGE);
+						booksKeyTextField.setText(null);
+					}
+				} else
+					JOptionPane.showMessageDialog(null,
+							"Please, complete the information", "Warning",
+							JOptionPane.WARNING_MESSAGE);
 			}
 		});
 
 		searchMembersButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-
+				if (isMembersDataCorrect()) {
+					member = new Members();
+					String memberQuery = "SELECT MemberID, ID, Name, EMail, Major, Expired"
+							+ " FROM Members WHERE "
+							+ membersData[0]
+							+ " LIKE " + membersData[1];
+					member.connection(memberQuery);
+					int memberID = member.getMemberID();
+					if (memberID != 0) {
+						listMembers = new ListSearchMembers(memberQuery);
+						getParent().add(listMembers);
+						try {
+							listMembers.setSelected(true);
+						} catch (java.beans.PropertyVetoException e) {
+						}
+						dispose();
+					} else {
+						JOptionPane.showMessageDialog(null, "No Match(es)",
+								"Error", JOptionPane.ERROR_MESSAGE);
+						membersKeyTextField.setText(null);
+					}
+				} else
+					JOptionPane.showMessageDialog(null,
+							"Please, complete the information", "Warning",
+							JOptionPane.WARNING_MESSAGE);
 			}
 		});
 		// Them action listener cho nut cancelButton
