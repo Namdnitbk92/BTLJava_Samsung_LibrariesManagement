@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
+import com.project.books.ResultSetTableModel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,7 +56,7 @@ public class ListSearchMembers extends JInternalFrame {
 			//thiết lập Query
 			try
 			{
-				tableaModel.setQuery(DEFAULT_QUERY);
+				tableModel.setQuery(DEFAULT_QUERY);
 			}
 			catch(SQLException sqlException)
 			{				
@@ -68,13 +70,13 @@ public class ListSearchMembers extends JInternalFrame {
 		{			
 		}
 		//thiết lập table với thông tin
-		table = new JTable(TableModel);
+		table = new JTable(tableModel);
 		//thiết lập kích thước table
 		table.setPreferredScrollableViewportSize(new Dimension(700,200));
 		//thiết lập font
 		table.setFont(new Font("Tohama",Font.PLAIN,12));
 		//thiết lập scrollpane cho table
-		scrollPane = new JSrcollPane(table);
+		scrollPane = new JScrollPane(table);
 		
 		//thiết lâp size cho table colums
 		for(int i = 0 ; i < 6; i++)
