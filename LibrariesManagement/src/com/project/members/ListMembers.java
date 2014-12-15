@@ -19,7 +19,7 @@ public class ListMembers extends JInternalFrame{
 	//tao Center Panel
 	private JPanel centerPanel = new JPanel();
 	//tao label
-	private JLabel label = new JLabel("Danh sách Sinh Viên");
+	private JLabel label = new JLabel("Danh sách Thành Viên");
 	//tao button
 	private JButton printButton ;
 	//tao table
@@ -28,139 +28,140 @@ public class ListMembers extends JInternalFrame{
 	private TableColumn column = null ;
 	//tao JScrollPane
 	private JScrollPane scrollPane ;
-	
-	//tao 1 doi tuong lop ResultSetTableModel
+
+	//for creating an object for the ResultSetTableModel class
 	private ResultSetTableModel tableModel;
 	
 	/**
 	 * thiet lap yeu cau thong tin cho lop ResultSetTableModel
 	 **/
-	private static final String JDBC_DRIVER = "sun.jdbc.odbc.JdbcOdbcDriver " ;
-	private static final String DATABASE_URL = "jdbc:odbc:JLibrary";
-	private static final String DEFAULT_QUERY = "SELECT MemberID, ID,Name,Email,"+
-	"Major,Expired FROM Members";
 	
+	private static final String JDBC_DRIVER = "sun.jdbc.odbc.JdbcOdbcDriver";
+	private static final String DATABASE_URL = "jdbc:odbc:JLibrary";
+	private static final String DEFAULT_QUERY = "SELECT MemberID, ID, Name, EMail," +
+	        "Major, Expired FROM Members";
+
 	//constructor cua ListMembers
-	public ListMembers() {
-		//thiet lap title cho internal frame
-		super("Members", false,true,false,true);
-		//thiet lap icon
-		setFrameIcon(new ImageIcon(ClassLoader.getSystemResource("image/List16.gif")));
-		//hien thi cac thanh phan giao dien do hoa nguoi dung
-		Container cp = getContentPane() ;
-		//thong tin yeu cau cho doi tuong ResultSetTableModel
-		try
-		{
-			tableModel = new ResultSetTableModel (JDBC_DRIVER, DATABASE_URL, DEFAULT_QUERY);
-			//thiet lap Query
+		public ListMembers() {
+			//thiet lap title cho internal frame
+			super("Members", false,true,false,true);
+			//thiet lap icon
+			setFrameIcon(new ImageIcon(ClassLoader.getSystemResource("images/List16.gif")));
+			//hien thi cac thanh phan giao dien do hoa nguoi dung
+			Container cp = getContentPane() ;
+			//thong tin yeu cau cho doi tuong ResultSetTableModel
 			try
 			{
-				tableModel.setQuery(DEFAULT_QUERY);
-				
+				tableModel = new ResultSetTableModel (JDBC_DRIVER, DATABASE_URL, DEFAULT_QUERY);
+				//thiet lap Query
+				try
+				{
+					tableModel.setQuery(DEFAULT_QUERY);
+					
+				}
+				catch (SQLException sqlException)
+				{
+					sqlException.printStackTrace();
+				}			
+			}
+			catch (ClassNotFoundException classNotFound)
+			{
+				classNotFound.printStackTrace();
 			}
 			catch (SQLException sqlException)
 			{
-				sqlException.printStackTrace();
-			}			
-		}
-		catch (ClassNotFoundException classNotFound)
-		{
-			classNotFound.printStackTrace();
-		}
-		catch (SQLException sqlException)
-		{
-			
-		}
-		//thiet lap bang thong tin
-		table = new JTable( tableModel);
-		//thiet lap size of table
-		table.setPreferredScrollableViewportSize(new Dimension (700, 200));;
-		//thiet lap font
-		table.setFont (new Font ("Tahoma",Font.PLAIN, 12 )) ;
-		//thiet lap scroolpane cho table
-		scrollPane = new JScrollPane(table) ;
-		//thiet lap size of table columns
-		for (int i = 0 ; i < 6; i++ )
-		{
-			column = table.getColumnModel().getColumn(i) ;
-			if(i == 0) //MemberID
-				column.setPreferredWidth(30);
-			if(i == 1) //ID
-				column.setPreferredWidth(20);
-			if (i == 2) //Name
-				column.setPreferredWidth(150);
-			if (i ==3 )//E-mail
-				column.setPreferredWidth(120);
-			if (i == 4) //major
-				column.setPreferredWidth(20);
-			if(i == 5) //expired
-				column.setPreferredWidth(40);					
-		}
-		//thiet lap font cho label
-		label.setFont(new Font ("Tahoma",Font.BOLD , 14));
-		//thiet lap layout cho panel
-		northPanel.setLayout(new FlowLayout (FlowLayout.CENTER));
-		//thêm label cho panel
-		northPanel.add(label);
-		//thêm panel cho container
-		cp.add("North",northPanel);
-		
-		//thiết lập layout cho panel
-		centerPanel.setLayout(new BorderLayout());
-		//tạo 1 ảnh cho button
-		ImageIcon printIcon = new ImageIcon(ClassLoader.getSystemResource("image/Print16.gif"));
-		//thêm button cho panel
-		printButton = new JButton ("in ra các members", printIcon);
-		//thiết lập cho tip text
-		printButton.setToolTipText("In kết quả");
-		//thiết lập font cho button
-		printButton.setFont(new Font("Tahoma",Font.PLAIN, 12));
-		//thêm button vào panel
-		centerPanel.add(printButton, BorderLayout.NORTH);
-		//thêm scroolpane cho panel
-		centerPanel.add(scrollPane, BorderLayout.CENTER);
-		//thiết lập border cho panel
-		centerPanel.setBorder(BorderFactory.createTitledBorder("Members"));
-		//thêm panel cho container
-		cp.add("Center", centerPanel);
-		
-		//thêm actionListener cho button
-		printButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent ae) {
-				// TODO Auto-generated method stub
-				Thread runner = new Thread ()
-				{
-					public void run()
-					{
-						try 
-						{
-							PrinterJob prnJob = PrinterJob.getPrinterJob() ;
-							prnJob.setPrintable(new PrintingMembers(DEFAULT_QUERY));
-							if(!prnJob.printDialog())
-							
-								return ;
-								setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-								prnJob.print();
-								setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));								
-						 }
-							catch(PrinterException ex)
-							{
-								System.out.println("Printing error :"+ex.toString());
-							}
-					}													
 				
-			} ;
-			runner.start();
 			}
-		});
-		
-		//thiết lập visible cho true
-		setVisible(true);
-		//show frame
-		pack();
+			//thiet lap bang thong tin
+			table = new JTable( tableModel);
+			//thiet lap size of table
+			table.setPreferredScrollableViewportSize(new Dimension (700, 200));;
+			//thiet lap font
+			table.setFont (new Font ("Tahoma",Font.PLAIN, 12 )) ;
+			//thiet lap scroolpane cho table
+			scrollPane = new JScrollPane(table) ;
+			//thiet lap size of table columns
+			for (int i = 0 ; i < 6; i++ )
+			{
+				column = table.getColumnModel().getColumn(i) ;
+				if(i == 0) //MemberID
+					column.setPreferredWidth(30);
+				if(i == 1) //ID
+					column.setPreferredWidth(20);
+				if (i == 2) //Name
+					column.setPreferredWidth(150);
+				if (i ==3 )//E-mail
+					column.setPreferredWidth(120);
+				if (i == 4) //major
+					column.setPreferredWidth(20);
+				if(i == 5) //expired
+					column.setPreferredWidth(40);					
+			}
+			//thiet lap font cho label
+			label.setFont(new Font ("Tahoma",Font.BOLD , 14));
+			//thiet lap layout cho panel
+			northPanel.setLayout(new FlowLayout (FlowLayout.CENTER));
+			//thêm label cho panel
+			northPanel.add(label);
+			//thêm panel cho container
+			cp.add("North",northPanel);
+			
+			//thiết lập layout cho panel
+			centerPanel.setLayout(new BorderLayout());
+			//tạo 1 ảnh cho button
+			ImageIcon printIcon = new ImageIcon(ClassLoader.getSystemResource("images/Print16.gif"));
+			//thêm button cho panel
+			printButton = new JButton ("in ra các members", printIcon);
+			//thiết lập cho tip text
+			printButton.setToolTipText("In kết quả");
+			//thiết lập font cho button
+			printButton.setFont(new Font("Tahoma",Font.PLAIN, 12));
+			//thêm button vào panel
+			centerPanel.add(printButton, BorderLayout.NORTH);
+			//thêm scroolpane cho panel
+			centerPanel.add(scrollPane, BorderLayout.CENTER);
+			//thiết lập border cho panel
+			centerPanel.setBorder(BorderFactory.createTitledBorder("Members"));
+			//thêm panel cho container
+			cp.add("Center", centerPanel);
+			
+			//thêm actionListener cho button
+			printButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent ae) {
+					// TODO Auto-generated method stub
+					Thread runner = new Thread ()
+					{
+						public void run()
+						{
+							try 
+							{
+								PrinterJob prnJob = PrinterJob.getPrinterJob() ;
+								prnJob.setPrintable(new PrintingMembers(DEFAULT_QUERY));
+								if(!prnJob.printDialog())
+								
+									return ;
+									setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+									prnJob.print();
+									setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));								
+							 }
+								catch(PrinterException ex)
+								{
+									System.out.println("Printing error :"+ex.toString());
+								}
+						}													
+					
+				} ;
+				runner.start();
+				}
+			});
+			
+			//thiết lập visible cho true
+			setVisible(true);
+			//show frame
+			pack();
+		}
+
+
 	}
-
-
-}

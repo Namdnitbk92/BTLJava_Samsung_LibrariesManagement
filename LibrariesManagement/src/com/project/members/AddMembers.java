@@ -14,7 +14,7 @@ public class AddMembers extends JInternalFrame
     //tao North Panel
 	private JPanel northPanel = new JPanel();
     //tao North Label
-	private JLabel northLabel = new JLabel("Thong tin Sinh vien");
+	private JLabel northLabel = new JLabel("Thông tin Thành viên");
 	//tao Center Panel
 	private JPanel centerPanel = new JPanel();
 	//tao mot Internal Panel trong center panel
@@ -22,8 +22,8 @@ public class AddMembers extends JInternalFrame
 	//tao mot mang JPanel
 	private JLabel[] informationLabel = new JLabel[7];
 	//tạo 1 mảng String
-	private String[] informationString = {"Member ID:","The Password:","Rewrite the password:",
-			                              "The Name:","E-mail:","Major Branch:","Expired:"};
+    private String[] informaionString = {" Member ID: ", " The Password: ", " Rewrite the password: ",
+	                                     " The Name: ", " E-MAIL: ", " Major Branch:", " Expired: "};
 	//tao 1 Internal Panel trong center panel
 	private JPanel informationTextFieldPanel = new JPanel();
 	//tao 1 mang JTextField
@@ -33,7 +33,7 @@ public class AddMembers extends JInternalFrame
 	//tạo 1 Internal Panel trong Center Panel
 	private JPanel insertInformationButtonPanel = new JPanel();
 	//tạo 1 button
-	private JButton insertInformationButton = new JButton("Chèn thông tin");
+	private JButton insertInformationButton = new JButton("Thêm Thành viên vào Database");
 	
 	//tạo South Panel
 	private JPanel southPanel = new JPanel() ;
@@ -130,7 +130,7 @@ public class AddMembers extends JInternalFrame
 		
 		for(int i = 0; i< informationLabel.length; i++)
 		{
-			informationLabelPanel.add(informationLabel[i]= new JLabel(informationString[i]));
+			informationLabelPanel.add(informationLabel[i]= new JLabel(informaionString[i]));
 			informationLabel[i].setFont(new Font ("Tahoma",Font.BOLD,11));			
 		}
 		//thêm panel cho centerPanel
@@ -155,7 +155,7 @@ public class AddMembers extends JInternalFrame
 			if (i == 3|| i == 4|| i ==5 || i ==6)
 			{
 				informationTextFieldPanel.add(informationTextField [i-2] = new JTextField(25));
-				informationTextField[i].setFont(new Font("Tahoma",Font.PLAIN,11));				
+				informationTextField[i-2].setFont(new Font("Tahoma",Font.PLAIN,11));				
 			}
 		}
 		centerPanel.add ("East",informationTextFieldPanel);
@@ -211,7 +211,7 @@ public class AddMembers extends JInternalFrame
 								   clearTextField();								
 							   }
 							   else
-								   JOptionPane.showMessageDialog(null,"Sinh viên trong Library","Error",JOptionPane.ERROR_MESSAGE);							   
+								   JOptionPane.showMessageDialog(null,"Thành viên trong Library","Error",JOptionPane.ERROR_MESSAGE);							   
 						   }
 						   
 					   };

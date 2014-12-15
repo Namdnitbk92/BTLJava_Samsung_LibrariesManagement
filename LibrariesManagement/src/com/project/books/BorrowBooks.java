@@ -33,12 +33,12 @@ public class BorrowBooks extends JInternalFrame {
 
 	
 	private JPanel northPanel = new JPanel();
-	private JLabel title = new JLabel("BOOK INFORMATION");
+	private JLabel title = new JLabel("Thông tin sách");
 	private JPanel centerPanel = new JPanel();
 	private JPanel informationPanel = new JPanel();
 	private JLabel[] informationLabel = new JLabel[4];
-	private String[] informationString = {" Write the Book ID:", " Write the Member ID:",
-	                                      " The Current Data:", " The Return Date:"};
+	private String[] informationString = {" Nhập Book ID:", " Nhập Member ID:",
+	                                      " Ngày hiện tại:", " Ngày trả:"};
 	private JTextField[] informationTextField = new JTextField[4];
 	private String date = new SimpleDateFormat("dd-MM-yy", Locale.getDefault()).format(new java.util.Date());
 	private String[] data;

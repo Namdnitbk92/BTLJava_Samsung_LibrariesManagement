@@ -51,10 +51,10 @@ public class AddBooks extends JInternalFrame {
     private JTextField txtShelfNo = new JTextField();
     //khoi tao mang String
     private String[] informationString = {
-        " Chủ đề sách : ", " Tiêu đề sách : ",
-        " Tên tác giả (s): ", " Tên nhà xuất bản : ",
-        " Bản quyền : ", " Số lần xuất bản : ", " Số trang : ",
-        " ISBN của sách : ", " Số lần nhân bản : ", " Tên nhà sách : "
+        " The book subject: ", " The book title: ",
+        " The name of the Author(s): ", " The name of the Publisher: ",
+        " Copyright for the book: ", " The edition number: ", " The number of Pages: ",
+        " ISBN for the book: ", " The number of copies: ", " The name of the Library: "
     };
     //khoi tao Internal Panel TextField ben trong center panel
     private JPanel informationTextFieldPanel = new JPanel();
@@ -64,7 +64,7 @@ public class AddBooks extends JInternalFrame {
     //khoi tao Internal Panel ben trong center panel
     private JPanel insertInformationButtonPanel = new JPanel();
     //khoi tao cac button
-    private JButton insertInformationButton = new JButton("Thêm thông tin về sách :");
+    private JButton insertInformationButton = new JButton("Thêm Sách vào Database");
 
     //khoi tao South Panel
     private JPanel southPanel = new JPanel();

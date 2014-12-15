@@ -36,12 +36,12 @@ import com.project.members.Members;
 public class ReturnBooks extends JInternalFrame implements ActionListener {
 
     private JPanel northPanel = new JPanel();
-    private JLabel title = new JLabel("BOOK INFORMATION");
+    private JLabel title = new JLabel("Thông tin sách");
 
     private JPanel centerPanel = new JPanel();
     private JPanel informationPanel = new JPanel();
     private JLabel[] informationLabel = new JLabel[2];
-    private String[] informationString = {" Write the Book ID:", " Write the Member ID:"};
+    private String[] informationString = {" Nhập Book ID:", " Nhập Member ID:"};
     private JTextField[] informationTextField = new JTextField[2];
     private String[] data;
     private JLabel lblFinePerDay = new JLabel("Fine/Day");
