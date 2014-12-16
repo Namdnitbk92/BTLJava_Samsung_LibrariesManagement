@@ -20,7 +20,7 @@ public class ListSearchMembers extends JInternalFrame {
 	//tạo Center Panel
 	private JPanel centerPanel = new JPanel();
 	//tạo label
-	private JLabel label = new JLabel ("Danh sách tìm kiếm Thành viên");
+	private JLabel label = new JLabel ("List for search Member");
 	//tạo button
 	private JButton printButton ;
 	//tạo table
@@ -37,7 +37,7 @@ public class ListSearchMembers extends JInternalFrame {
 	public ListSearchMembers( String query)
 	{
 		//thiết lập title cho internal frame
-		super ("Tìm kiếm Thành viên", false, true,false,true) ;
+		super ("Search member", false, true,false,true) ;
 		//thiết lập icon
 		setFrameIcon(new ImageIcon(ClassLoader.getSystemResource("image/List16.gif")));
 		//giao diện đồ họa người dùng

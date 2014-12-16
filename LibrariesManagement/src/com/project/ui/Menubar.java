@@ -31,10 +31,10 @@ public class Menubar extends JMenuBar {
     	
     	//Them book, member, search, loan & help Menus vao MenuBar
         this.add(fileMenu = new JMenu("File"));
-        this.add(bookMenu = new JMenu("Sách"));
-        this.add(memberMenu = new JMenu("Thành viên"));
-        this.add(searchMenu = new JMenu("Tìm kiếm"));
-        this.add(loanMenu = new JMenu("Mượn/Trả"));
+        this.add(bookMenu = new JMenu("Books"));
+        this.add(memberMenu = new JMenu("Members"));
+        this.add(searchMenu = new JMenu("Search"));
+        this.add(loanMenu = new JMenu("Loan"));
         
         //Cai dat Mnemonic key (phim tat cho menu)
         fileMenu.setMnemonic('f');
@@ -50,23 +50,23 @@ public class Menubar extends JMenuBar {
         }
         
         //Them print books & exit vao fileMenu
-        fileMenu.add(exit = new JMenuItem("Thoát", icons[1]));
+        fileMenu.add(exit = new JMenuItem("Exit", icons[1]));
 
         //Them add, list, listAvailble, listBorrowed, edit & remove Books va book information vao bookMenu
-        bookMenu.add(addBook = new JMenuItem("Thêm sách", icons[2]));
-        bookMenu.add(listBook = new JMenuItem("Danh sách sách", icons[3]));
+        bookMenu.add(addBook = new JMenuItem("Add Book", icons[2]));
+        bookMenu.add(listBook = new JMenuItem("List of Books", icons[3]));
        
 
         //Them add, list, edit & remove Members and member information vao memberMenu
-        memberMenu.add(addMember = new JMenuItem("Thêm thành viên", icons[2]));
-        memberMenu.add(listMember = new JMenuItem("Danh sách thành viên", icons[3]));
+        memberMenu.add(addMember = new JMenuItem("Add Member", icons[2]));
+        memberMenu.add(listMember = new JMenuItem("List of Members", icons[3]));
   
         //Them add, list & remove Members vao memberMenu
-        searchMenu.add(searchBooksAndMembers = new JMenuItem("Tìm kiếm", icons[7]));
+        searchMenu.add(searchBooksAndMembers = new JMenuItem("Search", icons[7]));
 
         //Them borrow & return books vao loanMenu
-        loanMenu.add(borrowBook = new JMenuItem("Mượn sách", icons[8]));
-        loanMenu.add(returnBook = new JMenuItem("Trả sách", icons[9]));
+        loanMenu.add(borrowBook = new JMenuItem("Borrow Books", icons[8]));
+        loanMenu.add(returnBook = new JMenuItem("Return Books", icons[9]));
         
         //Cai dat phim tat cho cac chuc nang trong menu
         exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));

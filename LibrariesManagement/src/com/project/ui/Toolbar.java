@@ -16,10 +16,10 @@ public class Toolbar extends JToolBar {
 									"images/Find24.gif", "images/Export24.gif", 
 									"images/Import24.gif","images/Exit24.gif" };
 	// Khoi tao tipText cho ToolBar
-	public String[] tipText = { "Thêm sách", "Danh sách sách",
-								"Thêm thành viên", "Danh sách thành viên", 
-								"Tìm kiếm", "Mượn sách", 
-								"Trả sách", "Thoát" };
+	public String[] tipText = { "Add Book", "List of Books",
+								"Add Members", "List of Members", 
+								"Search", "Borrow", 
+								"Return", "Exit" };
 	//Phuong thuc khoi tao lop ToolBar
 	public Toolbar() {
 		button = new JButton[19];

@@ -30,7 +30,7 @@ public class PrintingMembers extends JInternalFrame implements Printable {
 
 	//Phuong thuc khoi tao cho lop PrintingMembers
 	public PrintingMembers(String query) {
-		super("In danh sách thành viên", false, true, false, true);
+		super("Print list of Members", false, true, false, true);
 		//Lay giao dien de su dung
 		Container cp = getContentPane();
 		//Cai dat font

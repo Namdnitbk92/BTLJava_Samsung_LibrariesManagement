@@ -38,7 +38,7 @@ public class AddBooks extends JInternalFrame {
 	 //khoi tao North Panel
     private JPanel northPanel = new JPanel();
     //khoi tao nhan North Label
-    private JLabel northLabel = new JLabel("THÔNG TIN SÁCH");
+    private JLabel northLabel = new JLabel("Book Information");
     
     //khoi tao  Center Panel
     private JPanel centerPanel = new JPanel();
@@ -64,7 +64,7 @@ public class AddBooks extends JInternalFrame {
     //khoi tao Internal Panel ben trong center panel
     private JPanel insertInformationButtonPanel = new JPanel();
     //khoi tao cac button
-    private JButton insertInformationButton = new JButton("Thêm Sách vào Database");
+    private JButton insertInformationButton = new JButton("Add Book");
 
     //khoi tao South Panel
     private JPanel southPanel = new JPanel();

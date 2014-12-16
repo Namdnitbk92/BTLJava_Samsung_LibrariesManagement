@@ -22,7 +22,7 @@ public class ListSearchBooks extends JInternalFrame
 		// tạo bảng Trung Tâm 
 		private JPanel centerPanel = new JPanel();
 		//tạo nhãn
-		private JLabel label = new JLabel("Danh sách tìm kiếm Books");
+		private JLabel label = new JLabel("List of Books");
 		// tạo phím bấm 
 		private JButton printButton;
 		// tạo bảng

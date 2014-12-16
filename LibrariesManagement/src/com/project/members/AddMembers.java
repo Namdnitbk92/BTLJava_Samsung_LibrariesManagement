@@ -14,7 +14,7 @@ public class AddMembers extends JInternalFrame
     //tao North Panel
 	private JPanel northPanel = new JPanel();
     //tao North Label
-	private JLabel northLabel = new JLabel("Thông tin Thành viên");
+	private JLabel northLabel = new JLabel("Members Information");
 	//tao Center Panel
 	private JPanel centerPanel = new JPanel();
 	//tao mot Internal Panel trong center panel
@@ -33,7 +33,7 @@ public class AddMembers extends JInternalFrame
 	//tạo 1 Internal Panel trong Center Panel
 	private JPanel insertInformationButtonPanel = new JPanel();
 	//tạo 1 button
-	private JButton insertInformationButton = new JButton("Thêm Thành viên vào Database");
+	private JButton insertInformationButton = new JButton("Add members");
 	
 	//tạo South Panel
 	private JPanel southPanel = new JPanel() ;
@@ -100,7 +100,7 @@ public class AddMembers extends JInternalFrame
 	//constructor cho addMembers
 	public AddMembers () {
 		//thiet lap tieu de cho internal frame
-		super ("Thêm Members", false, true,false, true );
+		super ("Add member", false, true,false, true );
 		//thiết lập icon
 		setFrameIcon(new ImageIcon(ClassLoader.getSystemResource("images/Add16.gif")));
 		//thành phần giao diện đồ họa người dùng
@@ -118,7 +118,7 @@ public class AddMembers extends JInternalFrame
 		//thiết lập layout
 		centerPanel.setLayout(new BorderLayout());
 		//thiết lập border cho panel
-		centerPanel.setBorder(BorderFactory.createTitledBorder("Thêm 1 Member mới"));
+		centerPanel.setBorder(BorderFactory.createTitledBorder("Add new member"));
 		//thiết lập layout
 		informationLabelPanel.setLayout(new GridLayout(7, 1, 1, 1));
 		//thiết lập layout

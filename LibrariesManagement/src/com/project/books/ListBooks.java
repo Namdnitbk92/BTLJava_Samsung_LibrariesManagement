@@ -25,7 +25,7 @@ public class ListBooks extends JInternalFrame
 	// tạo bảng Trung Tâm 
 	private JPanel centerPanel = new JPanel();
 	//tạo nhãn
-	private JLabel northLabel = new JLabel("Danh sách Books");
+	private JLabel northLabel = new JLabel("List of Books");
 	// tạo phím bấm 
 	private JButton printButton;
 	// tạo bảng

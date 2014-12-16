@@ -19,7 +19,7 @@ public class ListMembers extends JInternalFrame{
 	//tao Center Panel
 	private JPanel centerPanel = new JPanel();
 	//tao label
-	private JLabel label = new JLabel("Danh sách Thành Viên");
+	private JLabel label = new JLabel("List of Members");
 	//tao button
 	private JButton printButton ;
 	//tao table
@@ -111,7 +111,7 @@ public class ListMembers extends JInternalFrame{
 			//tạo 1 ảnh cho button
 			ImageIcon printIcon = new ImageIcon(ClassLoader.getSystemResource("images/Print16.gif"));
 			//thêm button cho panel
-			printButton = new JButton ("in ra các members", printIcon);
+			printButton = new JButton ("Print members", printIcon);
 			//thiết lập cho tip text
 			printButton.setToolTipText("In kết quả");
 			//thiết lập font cho button

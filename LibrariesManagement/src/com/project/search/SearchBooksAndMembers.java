@@ -22,7 +22,7 @@ public class SearchBooksAndMembers extends JInternalFrame {
 	// Tao North Panel
 	private JPanel northPanel = new JPanel();
 	// Tao label
-	private JLabel title = new JLabel("Tìm kiếm sách và thành viên");
+	private JLabel title = new JLabel("Search for list of Members");
 
 	// Tao center
 	private JPanel center = new JPanel();
@@ -35,18 +35,18 @@ public class SearchBooksAndMembers extends JInternalFrame {
 	private JPanel searchBooksButtonPanel = new JPanel();
 
 	// Tao table
-	private JLabel searchBooksLabel = new JLabel(" Tìm kiếm bằng: ");
+	private JLabel searchBooksLabel = new JLabel("Search by: ");
 	// Tao JComboBox
 	private JComboBox searchBooksTypes;
 	// Tao mang String[] luu cac bookTypes
 	private String[] booksTypes = { "BookID", "Subject", "Title", "Author",
 			"Publisher", "ISBN" };
 	// Tao label
-	private JLabel booksKey = new JLabel(" Viết từ khóa: ");
+	private JLabel booksKey = new JLabel(" Write Key: ");
 	// Tao text field
 	private JTextField booksKeyTextField = new JTextField();
 	// Tao button
-	private JButton searchBooksButton = new JButton("Tìm kiếm");
+	private JButton searchBooksButton = new JButton("Search");
 
 	// Tao Center Panel
 	private JPanel centerMembersPanel = new JPanel();
@@ -56,22 +56,22 @@ public class SearchBooksAndMembers extends JInternalFrame {
 	private JPanel searchMembersButtonPanel = new JPanel();
 
 	// Tao table
-	private JLabel searchMembersLabel = new JLabel(" Tìm kiếm bằng: ");
+	private JLabel searchMembersLabel = new JLabel("Search by: ");
 	// Tao JComboBox
 	private JComboBox searchMembersTypes;
 	// Tao mang String[] luu cac membersTypes
 	private String[] membersTypes = { "MemberID", "Name", "E-Mail", "Major" };
 	// Tao label
-	private JLabel membersKey = new JLabel(" Viết từ khóa: ");
+	private JLabel membersKey = new JLabel(" Write Key: ");
 	// Tao text field
 	private JTextField membersKeyTextField = new JTextField();
 	// Tao button
-	private JButton searchMembersButton = new JButton("Tìm kiếm");
+	private JButton searchMembersButton = new JButton("Search");
 
 	// Tao south panel
 	private JPanel southPanel = new JPanel();
 	// Tao button
-	private JButton cancelButton = new JButton("Hủy bỏ");
+	private JButton cancelButton = new JButton("Cancer");
 
 	// Tao mang String de luu tru du lieu
 	private String[] booksData;
@@ -120,7 +120,7 @@ public class SearchBooksAndMembers extends JInternalFrame {
 	// Phuong thuc khoi tao lop searchBooksAndMembers
 	public SearchBooksAndMembers() {
 		// Cai dat tieu de cho internal frame
-		super("Tìm kiếm", false, true, false, true);
+		super("Search", false, true, false, true);
 		// Cai dat icon
 		setFrameIcon(new ImageIcon(
 				ClassLoader.getSystemResource("images/Find16.gif")));
@@ -159,7 +159,7 @@ public class SearchBooksAndMembers extends JInternalFrame {
 		centerBooksPanel.add("South", searchBooksButtonPanel);
 		// Cai dat border
 		centerBooksPanel.setBorder(BorderFactory
-				.createTitledBorder("Tìm kiếm sách:"));
+				.createTitledBorder("Search Book:"));
 		center.add("West", centerBooksPanel);
 
 		// Cai dat layout
@@ -185,7 +185,7 @@ public class SearchBooksAndMembers extends JInternalFrame {
 		centerMembersPanel.add("South", searchMembersButtonPanel);
 		// Cai dat border
 		centerMembersPanel.setBorder(BorderFactory
-				.createTitledBorder("Tìm kiếm thành viên:"));
+				.createTitledBorder("Search Member:"));
 		// Them center panel vao center
 		center.add("East", centerMembersPanel);
 
